@@ -44,10 +44,6 @@ jobs:
       - name: Checkout the code
         uses: actions/checkout@v4
       - name: gitleaks setup
-        uses: gitleaks/gitleaks-action@v2 
-      - name: gitleaks scan
-        run: |
-          gitleaks detect --source /client --exit-code 1
-          gitleaks detect --source /api --exit-code 1
+        uses: gitleaks/gitleaks-action@v2
     
      
