@@ -1,0 +1,38 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+# This workflow integrates njsscan with GitHub's Code Scanning feature
+# nodejsscan is a static security code scanner that finds insecure code patterns in your Node.js applications
+
+name: nodejs cicd
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    # The branches below must be a subset of the branches above
+    branches: [ "main" ]
+
+jobs:
+  compile:
+    runs-on: agent-1
+    name: njsscan code scanning
+    steps:
+    - name: Checkout the code
+      uses: actions/checkout@v4
+    - name: Set up node.js
+      uses: actions/checkout@v4
+      with:
+        node-version: '23'
+    - name: Frontend compile
+      run: |
+        cd client
+        find . -name "*.js" -exec node --check {} +
+    - name: Backend compile
+      run: |
+        cd api
+        find . -name "*.js" -exec node --check {} +
+    
+     
